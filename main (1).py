@@ -1,21 +1,31 @@
-# 1.2 Write a program that determines whether a year entered by the user is a leap year or not using tfelif-else statements.
+class bankaccount:
+    def __init__(self,account_number,account_holder_name,initial_balance=0.0):
+        self.__account_number=account_number
+        self.__account_holder_name=account_holder_name
+        self.__account_balance=initial_balance
 
-year = 2023
+    def desposit(self,amount):
+        if amount>0:
+            self.__account_balance+=amount
+            print("desposited ₹{}. New balance: ₹{}".format(amount,self.__account_balance))
+        else:
+          print("invaild deposit amount.")
 
-# To get year (integer input) from the user 
-# year = int(input("Enter a year: "))
+    def withdraw(self,amount):
+      if amount>0 and amount<=self.__account_balance:
+        self.__account_balance-=amount
+        print("withdrew ₹{}. new balance: ₹{}".format(amount,self.__account_balance))
+      else:
+        print("invaild withdrawal amount or insufficient balance.")
 
-# divided by 100 means century year (ending with 00)
-#century year divided by 400 is leap year
-if (year%400 == 0) and (year%100 == 0):
-  print("{0} is a leap year".format(year))
-  
-# not divided by 100 means not a century year
-# year divided by 4 is a leap year 
-elif (year%4 == 0) and (year%100 != 0):
-  print("{0} is a leap year".format(year))
+    def display_balance(self):
+        print("account balance for {} (account #{}): ₹{}".format(self.__account_holder_name,self.__account_number,self.__account_balance))
 
-# if not divided by both 400 (century year) and 4 (not century year) 
-# year is not leap year
-else:
-  print("{0} is not a leap year".format(year))
+account=bankaccount(account_number="111222333",
+                    account_holder_name="rajesh",
+                    initial_balance=4000.0)
+
+account.display_balance()
+account.desposit(500.0)
+account.withdraw(500.0)
+account.display_balance()
